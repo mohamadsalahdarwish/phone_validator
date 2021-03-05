@@ -8,7 +8,7 @@ public class CountryRetrievalTest {
 
 	@Test
 	public void testFromCode() {
-		fail("Not yet implemented");
+		assertEquals("Cameroon",CountryRetrieval.fromCode("(237)"));
 	}
 
 }

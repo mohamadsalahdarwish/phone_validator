@@ -8,32 +8,33 @@ public class NumberValidatorTest {
 
 	@Test
 	public void testCheckValidForUganda() {
-		fail("Not yet implemented");
+		assertTrue(NumberValidator.UGANDA.getValidationCountryFunction().apply("(256) 714660221"));
 	}
 
 	@Test
 	public void testCheckValidForMozambique() {
-		fail("Not yet implemented");
+		assertFalse(NumberValidator.MOZAMBIQUE.getValidationCountryFunction().apply("(258) 84330678235"));
 	}
 
 	@Test
 	public void testCheckValidForMorocco() {
-		fail("Not yet implemented");
+		assertFalse(NumberValidator.MOROCCO.getValidationCountryFunction().apply("(212) 6007989253"));
 	}
 
 	@Test
 	public void testCheckValidForEthiopia() {
-		fail("Not yet implemented");
+		assertFalse(NumberValidator.ETHIOPIA.getValidationCountryFunction().apply("(251) 9773199405"));
 	}
 
 	@Test
 	public void testCheckValidForCameroon() {
-		fail("Not yet implemented");
+		assertTrue(NumberValidator.CAMEROON.getValidationCountryFunction().apply("(237) 699209115"));
 	}
 
 	@Test
 	public void testFromCode() {
-		fail("Not yet implemented");
+		assertTrue(NumberValidator.fromCode("Cameroon", "(237) 699209115"));
+		
 	}
 
 }
