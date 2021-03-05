@@ -26,10 +26,9 @@ public class PhoneListController {
 	PhoneService phoneService;
 
 	@ApiOperation(value = "Load Phone Data")
-	@ApiImplicitParam(name = "pageNo", value = "int", required = true)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Phone Data retrieved successfully") })
-	@GetMapping(produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(produces =   MediaType.APPLICATION_JSON_VALUE )
 	public PhoneGridResponse getPhones(@RequestParam(value = "page", defaultValue = "0") int pageNo) {
 		return phoneService.getPhoneList(pageNo);
 	}
@@ -37,13 +36,10 @@ public class PhoneListController {
 	
 	
 	@ApiOperation(value = "Filter Data By Filed")
-	@ApiImplicitParam(name = "keyWordSearchRequest", value = "keyWordSearchRequest", required = true)
 	@ApiResponses(value = {
-
 			@ApiResponse(code = 200, message = "Data retrieved successfully") })
-	@PostMapping(path = "/filterbyfield", consumes = { MediaType.APPLICATION_XML_VALUE,
-			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_XML_VALUE,
-					MediaType.APPLICATION_JSON_VALUE })
+	@PostMapping(path = "/filterbyfield", consumes = MediaType.APPLICATION_JSON_VALUE , produces = 
+					MediaType.APPLICATION_JSON_VALUE )
 	public PhoneGridResponse getPhonesByfiledKeyword(@RequestBody InMemorySearchRequest inMemorySearchRequest) {
 		return phoneService.filterPhoneListByField(inMemorySearchRequest);
 	}

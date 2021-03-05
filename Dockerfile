@@ -1,6 +1,4 @@
-FROM centos
-RUN yum install -y java
-RUN yum install -y sqlite
-VOLUME /tmp
-COPY target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:8
+COPY target/*.jar phonevalidation.jar
+COPY sample.db sample.db
+ENTRYPOINT ["java","-jar","phonevalidation.jar"]
