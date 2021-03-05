@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+import com.jumia.phonevalidation.exceptions.model.PhoneValidatorServiceException;
 import com.jumia.phonevalidation.ui.model.response.ErrorMessage;
 
 @ControllerAdvice
@@ -22,6 +23,13 @@ public class AppExceptionsHandler {
 		return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@ExceptionHandler(value = {IndexOutOfBoundsException.class})
+	public ResponseEntity<Object> handleIndexOutOfBoundry(IndexOutOfBoundsException ex, WebRequest request)
+	{
+		ErrorMessage errorMessage = new ErrorMessage(new Date(), "Index Out Of Boundries");
+		
+		return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
 	@ExceptionHandler(value = {Exception.class})
 	public ResponseEntity<Object> handleOtherExceptions(Exception ex, WebRequest request)

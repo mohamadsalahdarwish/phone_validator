@@ -13,21 +13,8 @@ public class Util {
 	// divide the list in memory based on page size
 	public List<Phone> paginateGridData(List<Phone> phones,
 			int page, int pageSize, StringBuilder totalPages) {
-		if (page == 0 && pageSize == 0)
-			return phones;
-		if (page > 0)
-			page = page - 1;
-		int totalPagesInt = 0;
-		if (phones.size() % pageSize == 0) {
-			totalPagesInt = (phones.size() / pageSize);
-		} else {
-			totalPagesInt = (phones.size() / pageSize) + 1;
-		}
-
-		totalPages.append(totalPagesInt);
-
-		List<List<Phone>> subSets = Lists.partition(phones, pageSize);
-
-		return (subSets != null && !subSets.isEmpty() ? subSets.get(page) : null);
+		List<List<Phone>> subLists = Lists.partition(phones, pageSize);
+		totalPages.append(subLists.size());
+		return (subLists != null && !subLists.isEmpty() ? subLists.get(page-1) : null);
 	}
 }

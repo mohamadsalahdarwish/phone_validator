@@ -11,7 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.jumia.phonevalidation.exceptions.PhoneValidatorServiceException;
+import com.jumia.phonevalidation.exceptions.model.PhoneValidatorServiceException;
 import com.jumia.phonevalidation.filteration.FilterFactory;
 import com.jumia.phonevalidation.io.entity.Customer;
 import com.jumia.phonevalidation.io.repository.CustomerRepository;
@@ -78,7 +78,7 @@ public class PhoneServiceImpl implements PhoneService{
 		StringBuilder totalPages = new StringBuilder();
 		List<Phone>phonesPerPageRequest =util.paginateGridData(phones, inMemorySearchRequest.getPageNo(), Constants.PAGE_SIZE, totalPages);
 		 return PhoneGridResponse.builder().phones(phonesPerPageRequest)
-        			.totalPages(Integer.parseInt(String.valueOf(totalPages))).build();
+        			.totalPages(!String.valueOf(totalPages).equals("")?Integer.parseInt(String.valueOf(totalPages)):0).build();
 	}
 	
 }
