@@ -46,7 +46,7 @@ public class PhoneServiceImpl implements PhoneService{
 	     Page<Customer> pagedResult = customerRepository.findAll(paging);
 	        if(pagedResult.hasContent()) {
 	        	return PhoneGridResponse.builder().phones(convertToPhoneList(pagedResult.getContent()))
-	        			.totalPages(pagedResult.getTotalPages()).build();
+	        			.totalPages(pagedResult.getTotalPages()).totalElements(pagedResult.getTotalElements()).build();
 	        } else {
 	        	throw new PhoneValidatorServiceException(ErrorMessages.NO_DATA_FOUND.getErrorMessage());
 	        }
@@ -78,7 +78,9 @@ public class PhoneServiceImpl implements PhoneService{
 		StringBuilder totalPages = new StringBuilder();
 		List<Phone>phonesPerPageRequest =util.paginateGridData(phones, inMemorySearchRequest.getPageNo(), Constants.PAGE_SIZE, totalPages);
 		 return PhoneGridResponse.builder().phones(phonesPerPageRequest)
-        			.totalPages(!String.valueOf(totalPages).equals("")?Integer.parseInt(String.valueOf(totalPages)):0).build();
+        			.totalPages(!String.valueOf(totalPages).equals("")?Integer.parseInt(String.valueOf(totalPages)):0)
+        			.totalElements(phones.size())
+        			.build();
 	}
 	
 }

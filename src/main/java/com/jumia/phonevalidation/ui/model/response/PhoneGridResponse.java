@@ -10,5 +10,6 @@ import lombok.Data;
 @Builder
 public class PhoneGridResponse {
 	private int  totalPages;
+	private long totalElements;
 	private List<Phone> phones = new ArrayList<>();
 }
