@@ -1,7 +1,7 @@
 steps :- 
-1- Clone the project to your workspace.
-2- Open terminal,cmd .
-3- Go to the root project .
+1- Clone the project to your workspace.<br/>
+2- Open terminal,cmd .<br />
+3- Go to the root project .<br />
 4- Type "mvn clean install".
 5- Type "docker-compose up —-build".
 6- It will be up and running on port 9092.
